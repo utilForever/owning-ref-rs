@@ -35,7 +35,7 @@ fn return_owned_and_referenced() -> OwningRef<Vec<u8>, [u8]> {
 To get started, add the following to `Cargo.toml`.
 
 ```toml
-owning_ref = "0.4.1"
+owning-ref = "0.1.0"
 ```
 
 ...and see the docs for how to use it.
@@ -77,7 +77,7 @@ You can contact me via e-mail (utilForever at gmail.com). I am always happy to a
 
 ## License
 
-<img align="right" src="http://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
+<img align="right" src="https://opensource.org/trademarks/opensource/OSI-Approved-License-100x137.png">
 
 The class is licensed under the [MIT License](http://opensource.org/licenses/MIT):
 

@@ -285,6 +285,9 @@ impl<T> Erased for T {}
 /// Helper trait for erasing the concrete type of what an owner derferences to,
 /// for example `Box<T> -> Box<dyn Erased>`. This would be unneeded with
 /// higher kinded types support in the language.
+///
+/// # Safety
+/// This trait is not thread-safe.
 pub unsafe trait IntoErased<'a> {
     /// Owner with the dereference type substituted to `Erased`.
     type Erased;
@@ -326,6 +329,9 @@ impl<O, T: ?Sized> OwningRef<O, T> {
     ///
     /// This is useful for cases where coherence rules prevents implementing the trait
     /// without adding a dependency to this crate in a third-party library.
+    ///
+    /// # Safety
+    /// This function is not thread-safe.
     pub unsafe fn new_assert_stable_address(o: O) -> Self
     where
         O: Deref<Target = T>,
@@ -472,6 +478,9 @@ impl<O, T: ?Sized> OwningRef<O, T> {
     /// The new owner type needs to still contain the original owner in some way
     /// so that the reference into it remains valid. This function is marked unsafe
     /// because the user needs to manually uphold this guarantee.
+    ///
+    /// # Safety
+    /// This function is not thread-safe.
     pub unsafe fn map_owner<F, P>(self, f: F) -> OwningRef<P, T>
     where
         O: StableAddress,
@@ -581,6 +590,9 @@ impl<O, T: ?Sized> OwningRefMut<O, T> {
     ///
     /// This is useful for cases where coherence rules prevents implementing the trait
     /// without adding a dependency to this crate in a third-party library.
+    ///
+    /// # Safety
+    /// This function is not thread-safe.
     pub unsafe fn new_assert_stable_address(mut o: O) -> Self
     where
         O: DerefMut<Target = T>,
@@ -724,6 +736,9 @@ impl<O, T: ?Sized> OwningRefMut<O, T> {
     /// The new owner type needs to still contain the original owner in some way
     /// so that the reference into it remains valid. This function is marked unsafe
     /// because the user needs to manually uphold this guarantee.
+    ///
+    /// # Safety
+    /// This trait is not thread-safe.
     pub unsafe fn map_owner<F, P>(self, f: F) -> OwningRefMut<P, T>
     where
         O: StableAddress,
@@ -877,6 +892,9 @@ pub trait ToHandle {
 
     /// Given an appropriately-long-lived pointer to ourselves, create a
     /// handle to be encapsulated by the `OwningHandle`.
+    ///
+    /// # Safety
+    /// This trait is not thread-safe.
     unsafe fn to_handle(x: *const Self) -> Self::Handle;
 }
 
@@ -887,6 +905,9 @@ pub trait ToHandleMut {
 
     /// Given an appropriately-long-lived pointer to ourselves, create a
     /// mutable handle to be encapsulated by the `OwningHandle`.
+    ///
+    /// # Safety
+    /// This trait is not thread-safe.
     unsafe fn to_handle_mut(x: *const Self) -> Self::HandleMut;
 }
 
@@ -1113,26 +1134,26 @@ unsafe impl<O, T: ?Sized> CloneStableAddress for OwningRef<O, T> where O: CloneS
 unsafe impl<O, T: ?Sized> Send for OwningRef<O, T>
 where
     O: Send,
-    for<'a> (&'a T): Send,
+    for<'a> &'a T: Send,
 {
 }
 unsafe impl<O, T: ?Sized> Sync for OwningRef<O, T>
 where
     O: Sync,
-    for<'a> (&'a T): Sync,
+    for<'a> &'a T: Sync,
 {
 }
 
 unsafe impl<O, T: ?Sized> Send for OwningRefMut<O, T>
 where
     O: Send,
-    for<'a> (&'a mut T): Send,
+    for<'a> &'a mut T: Send,
 {
 }
 unsafe impl<O, T: ?Sized> Sync for OwningRefMut<O, T>
 where
     O: Sync,
-    for<'a> (&'a mut T): Sync,
+    for<'a> &'a mut T: Sync,
 {
 }
 

@@ -1,6 +1,9 @@
 # owning-ref-rs
 
-==============
+[![Rust](https://github.com/utilForever/owning-ref-rs/actions/workflows/rust.yml/badge.svg?branch=main)](https://github.com/utilForever/owning-ref-rs/actions/workflows/rust.yml)
+[![Build](https://github.com/utilForever/owning-ref-rs/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/utilForever/owning-ref-rs/actions/workflows/build.yml)
+[![Test](https://github.com/utilForever/owning-ref-rs/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/utilForever/owning-ref-rs/actions/workflows/test.yml)
+[![Audit](https://github.com/utilForever/owning-ref-rs/actions/workflows/audit.yml/badge.svg?branch=main)](https://github.com/utilForever/owning-ref-rs/actions/workflows/audit.yml)
 
 A library for creating references that carry their owner with them.
 

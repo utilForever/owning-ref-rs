@@ -1,0 +1,18 @@
+[package]
+name = "owning-ref"
+version = "0.1.0"
+authors = [
+    "Chris Ohk" <utilforever@gmail.com>",
+    "Marvin Löbel <loebel.marvin@gmail.com>"
+]
+license = "MIT"
+
+description = "A library for creating references that carry their owner with them"
+readme = "README.md"
+documentation = ""
+
+repository = "https://github.com/utilforever/owning-ref-rs"
+keywords = [ "reference", "sibling", "field", "owning" ]
+
+[dependencies]
+stable_deref_trait = "1.0.0"

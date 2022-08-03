@@ -9,7 +9,6 @@ license = "MIT"
 
 description = "A library for creating references that carry their owner with them"
 readme = "README.md"
-documentation = ""
 
 repository = "https://github.com/utilforever/owning-ref-rs"
 keywords = [ "reference", "sibling", "field", "owning" ]

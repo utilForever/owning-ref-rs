@@ -2,7 +2,7 @@
 name = "owning-ref"
 version = "0.1.0"
 authors = [
-    "Chris Ohk" <utilforever@gmail.com>",
+    "Chris Ohk <utilforever@gmail.com>",
     "Marvin Löbel <loebel.marvin@gmail.com>"
 ]
 license = "MIT"
